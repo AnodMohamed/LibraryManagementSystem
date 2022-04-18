@@ -17,7 +17,7 @@ class CategoryController extends Controller
     public function index()
     {
         return view('AdminDashboard.categories.index', [
-            'categories'  => Category::with('subCategories')->whereNull('parent_id')->get(),
+            'categories'  => Category::all()
         ]);
     }
 
@@ -29,7 +29,7 @@ class CategoryController extends Controller
     public function create()
     {
         return view('AdminDashboard.categories.create', [
-            'categories'  => Category::with('subCategories')->whereNull('parent_id')->get(),
+            'categories'  => Category::all()
         ]);
     }
 
@@ -43,7 +43,6 @@ class CategoryController extends Controller
     {
         $category               = new Category;
         $category->name         = $request->name;
-        $category->parent_id    = $request->parent_id;
         $category->slug         = Str::slug($request->name);
         $category->save();
 
@@ -73,7 +72,6 @@ class CategoryController extends Controller
     {
         $this->validate($request, [
             'name'          => ['required', 'unique:categories'],
-            'parent_id'     => ['sometimes', 'nullable'],
         ]);
 
         $category->name = $request->name;

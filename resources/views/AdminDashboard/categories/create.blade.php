@@ -30,16 +30,6 @@
                         @csrf
 
                         <div>
-                            <small class="mb-4 text-gray-500">Note: Select Parent only for subcategory</small>
-                            <select name="parent_id" id="" class="w-full mb-6 bg-indigo-200 border-none">
-                                <option value="">Select Parent Category</option>
-                                @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div>
                             <x-jet-label for="name" value="{{ __('Name') }}" />
                             <x-jet-input id="name" class="block w-full mt-1" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
                             <span class="mt-2 text-xs text-gray-500">Maximum 200 characters</span>

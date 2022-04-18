@@ -10,7 +10,6 @@
                     <!--Icon from: http://www.potlabicons.com/ -->
                     <div style="display: flex;">
                         <img src="{{ asset('img\other\logo.png') }}" width="47" height="50" alt="logo"  ">
-                    <span class="col-9"> Library Management System  </span>
                     </div>
                 </a>
 
@@ -45,6 +44,20 @@
                                     {{ __('Students') }}
                                 </x-jet-nav-link>
                             </div>
+
+                             {{-- Books --}}
+                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="{{ route('books.display') }}" :active="request()->routeIs('books.display')">
+                                    {{ __('Books') }}
+                                </x-jet-nav-link>
+                            </div>
+
+                             {{-- borrows --}}
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="{{ route('borrows.pending') }}" :active="request()->routeIs('borrows.pending')">
+                                    {{ __('Borrows') }}
+                                </x-jet-nav-link>
+                            </div>
                            
                         @elseif (Auth::user()->utype == 'STD')
                             {{-- Dashboard --}}
@@ -53,12 +66,22 @@
                                     {{ __('Dashboard') }}
                                 </x-jet-nav-link>
                             </div>
+                            
                             {{-- Posts --}}
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <x-jet-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('posts.index')">
                                     {{ __('Posts') }}
                                 </x-jet-nav-link>
                             </div>
+
+                            {{-- Books --}}
+                            
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="{{ route('books.index') }}" :active="request()->routeIs('books.index')">
+                                    {{ __('Books') }}
+                                </x-jet-nav-link>
+                            </div>
+                            
                         @endif
                     @endauth
                  @endif

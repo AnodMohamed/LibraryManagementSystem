@@ -15,7 +15,6 @@ class Category extends Model
     protected $fillable = [
         'name',
         'slug',
-        'parent_id',
     ];
 
     public function posts(): HasMany
@@ -23,8 +22,5 @@ class Category extends Model
         return $this->hasMany(Post::class);
     }
 
-    public function subCategories(): HasMany
-    {
-        return $this->hasMany(Category::class, 'parent_id');
-    }
+    
 }

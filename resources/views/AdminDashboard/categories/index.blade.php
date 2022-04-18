@@ -43,9 +43,7 @@
                                 Name
                             </th>
 
-                            <th class="px-2 py-3 text-xs tracking-wider text-left uppercase">
-                                Sub Categories
-                            </th>
+                            
 
                             <th class="px-2 py-3 text-xs tracking-wider text-left uppercase">
                                 Created Date
@@ -76,14 +74,6 @@
                                 {{ $category->name }}
                             </td>
 
-                            <td class="px-2 py-4 whitespace-nowrap">
-                                <ul class="flex">[
-                                    @foreach ($category->subCategories as $subCategory)
-                                    <li class="px-2">{{ $subCategory->name }} ,</li>
-                                    @endforeach
-                                    ]
-                                </ul>
-                            </td>
 
                             <td class="px-2 py-4 whitespace-nowrap">
                                 {{ $category->created_at->format('m/d/y') }}

@@ -12,6 +12,7 @@
     </style>
 
 </head>
+@stack('styles') 
 
 <body class="leading-normal tracking-normal text-white gradient">
 
@@ -27,5 +28,8 @@
     <x-partials.footer />
 
     <livewire:scripts>
+
+    @stack('scripts') 
+
 </body>
 </html>

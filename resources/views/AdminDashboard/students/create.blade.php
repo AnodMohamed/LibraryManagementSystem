@@ -8,7 +8,9 @@
 
     <x-slot name="nav">
         <div class="space-x-4">
-           
+            <x-jet-nav-link href="{{ route('students.index') }}" :active="request()->routeIs('students.index')">
+                {{ __('Index') }}
+            </x-jet-nav-link>
         </div>
     </x-slot>
 

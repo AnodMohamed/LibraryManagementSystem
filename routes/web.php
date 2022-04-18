@@ -1,13 +1,16 @@
 <?php
 
+use App\Http\Controllers\AdminBookController;
 use App\Http\Controllers\AdminDashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\BorrowsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\StudentBookController;
 use App\Http\Controllers\StudentDashboardController;
 use App\Http\Controllers\StudentsController;
 
@@ -60,6 +63,29 @@ Route::group(['middleware' => ['authadmin'], 'prefix' => 'AdminDashboard'], func
         Route::post('/', [StudentsController::class, 'store'])->name('store');
 
     });
+    
+    // Books
+    Route::group(['prefix' => 'books', 'as' => 'books.'], function () {
+        Route::get('/display', [AdminBookController::class, 'index'])->name('display');
+        Route::get('create', [AdminBookController::class, 'create'])->name('create');
+        Route::post('/', [AdminBookController::class, 'store'])->name('store');
+        Route::get('{book:slug}/edit', [AdminBookController::class, 'edit'])->name('edit');
+        Route::put('{book:slug}', [AdminBookController::class, 'update'])->name('update');
+        Route::delete('{book:slug}/delete', [AdminBookController::class, 'destroy'])->name('delete');
+
+    });
+
+     // Borrows
+     Route::group(['prefix' => 'borrows', 'as' => 'borrows.'], function () {
+        Route::get('/pending', [BorrowsController::class, 'pending'])->name('pending');
+        /*
+        Route::get('create', [AdminBookController::class, 'create'])->name('create');
+        Route::post('/', [AdminBookController::class, 'store'])->name('store');
+        Route::get('{book:slug}/edit', [AdminBookController::class, 'edit'])->name('edit');
+        Route::put('{book:slug}', [AdminBookController::class, 'update'])->name('update');
+        Route::delete('{book:slug}/delete', [AdminBookController::class, 'destroy'])->name('delete');
+        */
+    });
 });
 
 Route::group(['middleware' => ['authStudent'], 'prefix' => 'StudentDashboard'], function () {
@@ -67,6 +93,7 @@ Route::group(['middleware' => ['authStudent'], 'prefix' => 'StudentDashboard'], 
     // Dashboard
     Route::group(['prefix' => '', 'as' => 'StudentDashboard.'], function () {
         Route::get('/', [StudentDashboardController::class, 'index'])->name('index');
+        
     });
 
     
@@ -82,5 +109,11 @@ Route::group(['middleware' => ['authStudent'], 'prefix' => 'StudentDashboard'], 
         Route::get('{post:slug}', [PostController::class, 'show'])->name('show');
     });
 
+    
+    // Books
+    Route::group(['prefix' => 'books', 'as' => 'books.'], function () {
+        Route::get('/', [StudentBookController::class, 'index'])->name('index');
+
+    });
     
 });

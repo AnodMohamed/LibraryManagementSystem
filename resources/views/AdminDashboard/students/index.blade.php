@@ -60,7 +60,7 @@
 
                     <tbody class="text-xs divide-y divide-gray-200 bg-indigo-50">
                         @foreach ($students as $student)
-
+                        
                         <tr>
                             <td class="px-2 py-4 whitespace-nowrap">
                             </td>

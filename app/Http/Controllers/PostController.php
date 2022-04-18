@@ -60,7 +60,7 @@ class PostController extends Controller
             $imageName      = $image->getClientOriginalName();
             $imageNewName   = explode('.', $imageName)[0];
             $fileExtention  = time() . '.' . $imageNewName . '.' . $image->getClientOriginalExtension();
-            $location       = storage_path('app/public/images/' . $fileExtention);
+            $location       = $image->storeAs('post', $fileExtention);
             Image::make($image)->resize(1200, 630)->save($location);
 
             $post->cover_image = $fileExtention;
@@ -120,11 +120,9 @@ class PostController extends Controller
             $imageName      = $image->getClientOriginalName();
             $imageNewName   = explode('.', $imageName)[0];
             $fileExtention  = time() . '.' . $imageNewName . '.' . $image->getClientOriginalExtension();
-            $location       = storage_path('app/public/images/' . $fileExtention);
+            $location       = $image->storeAs('post', $fileExtention);
             Image::make($image)->resize(1200, 630)->save($location);
             $post->cover_image = $fileExtention;
-
-            File::delete(storage_path('app/public/images/' . $oldFileName));
         };
 
         $post->save();

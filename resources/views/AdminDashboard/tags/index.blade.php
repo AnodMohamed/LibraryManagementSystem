@@ -8,11 +8,6 @@
 
     <x-slot name="nav">
         <div class="space-x-4">
-            {{-- Index --}}
-            <x-jet-nav-link href="{{ route('tags.index') }}" :active="request()->routeIs('tags.index')">
-                {{ __('Index') }}
-            </x-jet-nav-link>
-
             {{-- Create --}}
             <x-jet-nav-link href="{{ route('tags.create') }}" :active="request()->routeIs('tags.create')">
                 {{ __('Create') }}

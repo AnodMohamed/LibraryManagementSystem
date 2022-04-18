@@ -45,6 +45,7 @@ class StudentsController extends Controller
     {
         //Hash::make($request->newPassword)
         $student                = new User;
+        
         $student->name          = $request->name;
         $student->email         = $request->email;
         $student->password      = Hash::make($request->password);
