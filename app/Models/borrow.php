@@ -18,4 +18,11 @@ class borrow extends Model
     {
         return $this->belongsTo(Book::class);
     }
+    
+    public static function searchBorrow($search)
+    {
+        return empty($search) ? static::query()
+            : static::query()->where('id', 'like', '%' . $search . '%');
+
+    }
 }

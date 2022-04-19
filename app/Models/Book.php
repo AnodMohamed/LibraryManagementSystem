@@ -49,6 +49,7 @@ class Book extends Model
             ->orWhere('auther', 'like', '%' . $search . '%');
     }
 
+
     public function scopeCategory(Builder $query, string $category): Builder
     {
         return $query->where('category_id', $category);

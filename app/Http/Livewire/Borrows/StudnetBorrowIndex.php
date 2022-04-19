@@ -3,9 +3,10 @@
 namespace App\Http\Livewire\Borrows;
 
 use App\Models\borrow;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class PendingBorrowingRequests extends Component
+class StudnetBorrowIndex extends Component
 {
     public $search  = '';
     public $orderBy = 'id';
@@ -14,12 +15,11 @@ class PendingBorrowingRequests extends Component
     
     public function render()
     {
-
-        $peddings = borrow::searchBorrow($this->search)
-        ->where('status','Pending')
+        $borrows = borrow::searchBorrow($this->search)
+        ->where('student_id',Auth::user()->id)
         ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
         ->paginate($this->perPage);
 
-        return view('livewire.borrows.pending-borrowing-requests',['peddings'=>$peddings]);
+        return view('livewire.borrows.studnet-borrow-index',['borrows'=>$borrows]);
     }
 }

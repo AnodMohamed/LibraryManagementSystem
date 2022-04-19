@@ -22,7 +22,7 @@ class CreateBooksTable extends Migration
             $table->string('auther');
             $table->string('publisher');
             $table->integer('bcopies');
-            $table->integer('bcopiesInًarehouse');
+            $table->integer('bcopiesInwarehouse');
             $table->timestamp('published_at')->nullable();
             $table->boolean('featured')->default(0);
             $table->timestamps();

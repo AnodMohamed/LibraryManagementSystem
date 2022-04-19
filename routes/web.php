@@ -27,8 +27,9 @@ use App\Http\Controllers\StudentsController;
 
 // Home Route
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
+Route::get('/AppointmentPage{borrow:id}', [HomeController::class, 'AppointmentPage'])->name('AppointmentPage');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
+
 
 Route::group(['middleware' => ['authadmin'], 'prefix' => 'AdminDashboard'], function () {
 
@@ -78,6 +79,8 @@ Route::group(['middleware' => ['authadmin'], 'prefix' => 'AdminDashboard'], func
      // Borrows
      Route::group(['prefix' => 'borrows', 'as' => 'borrows.'], function () {
         Route::get('/pending', [BorrowsController::class, 'pending'])->name('pending');
+        Route::get('/acceptable', [BorrowsController::class, 'acceptable'])->name('acceptable');
+
         /*
         Route::get('create', [AdminBookController::class, 'create'])->name('create');
         Route::post('/', [AdminBookController::class, 'store'])->name('store');
@@ -116,4 +119,16 @@ Route::group(['middleware' => ['authStudent'], 'prefix' => 'StudentDashboard'], 
 
     });
     
+     // Borrows
+     Route::group(['prefix' => 'borrows', 'as' => 'borrows.'], function () {
+        Route::get('/studentIndex', [BorrowsController::class, 'studentIndex'])->name('studentIndex');
+
+        /*
+        Route::get('create', [AdminBookController::class, 'create'])->name('create');
+        Route::post('/', [AdminBookController::class, 'store'])->name('store');
+        Route::get('{book:slug}/edit', [AdminBookController::class, 'edit'])->name('edit');
+        Route::put('{book:slug}', [AdminBookController::class, 'update'])->name('update');
+        Route::delete('{book:slug}/delete', [AdminBookController::class, 'destroy'])->name('delete');
+        */
+    });
 });

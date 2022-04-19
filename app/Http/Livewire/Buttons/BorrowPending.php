@@ -30,13 +30,27 @@ class BorrowPending extends Component
 
     public function reservationborrow()
     {
+        if($this->status == 'Acceptable'){
+
+            $this->validate([
+          
+                'releaseDate' => 'required|date|after:today',
+
+            ]);
+
+        }
+        
+        if($this->status == ''){
 
             $this->validate([
           
                 'status' => 'required',
-                'releaseDate' => 'required|date|after:today',
-
             ]);
+
+        }
+        
+
+           
        
                 
         $borrow = borrow::find($this->borrow_id);

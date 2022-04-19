@@ -57,15 +57,11 @@
                                 </th>
 
                                 <th class="px-2 py-3 text-xs tracking-wider text-left uppercase">
-                                    Student
-                                </th>
-
-                                <th class="px-2 py-3 text-xs tracking-wider text-left uppercase">
                                     Book
                                 </th>
 
                                 <th class="px-2 py-3 text-xs tracking-wider text-left uppercase">
-                                    Copies In Warehouse
+                                    Status
                                 </th>
 
                                 <th class="px-2 py-3 text-xs tracking-wider text-left uppercase">
@@ -75,39 +71,36 @@
                         </thead>
 
                         <tbody class="text-xs divide-y divide-gray-200 bg-indigo-50">
-                            @foreach ($peddings as $pedding)
+                            @foreach ($borrows as $borrow)
 
                             <tr>
                                 <td class="px-2 py-4 whitespace-nowrap">
                                 </td>
 
                                 <td class="px-2 py-4 whitespace-nowrap">
-                                    {{ $pedding->id }}
+                                    {{ $borrow->id }}
+                                </td>
+
+
+                                <td class="px-2 py-4 whitespace-nowrap">
+                                    {{ $borrow->book->title }}
                                 </td>
 
                                 <td class="px-2 py-4 whitespace-nowrap">
-                                    {{$pedding->student->name}}
-                                </td>
-
-                                <td class="px-2 py-4 whitespace-nowrap">
-                                    {{ $pedding->book->title }}
-                                </td>
-
-                                <td class="px-2 py-4 whitespace-nowrap">
-                                    {{ $pedding->book->bcopiesInwarehouse }}
+                                    {{ $borrow->status }}
                                 </td>
                                 <td class="px-2 py-4 text-sm text-gray-500 whitespace-nowrap">
                                     <div class="flex justify-start space-x-1">
                                         
-                                        <a href="{{ route('AppointmentPage', $pedding) }}" class="p-1 border-2 border-indigo-00 rounded-md bg-blue-300">
+                                        <a href="{{ route('AppointmentPage', $borrow) }}" class="p-1 border-2 border-indigo-00 rounded-md bg-blue-300">
                                             <svg class="w-6 h-6 " xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" stroke-width="2"  viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                             </svg>
                                         </a>
-
-                                        <livewire:buttons.borrow-pending :pending="$pedding" :key="$pedding->id" />
-
+                                        {{-------
+                                        <livewire:buttons.borrow-pending :pending="$borrow" :key="$borrow->id" />
+-------}}
 
                                     </div>
                                 </td>
