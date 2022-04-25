@@ -28,5 +28,19 @@ class BorrowsController extends Controller
         return view('StudentDashboard.borrows.index');
         
     }
+
+    public function driven()
+    {
+
+        return view('AdminDashboard.borrows.driven-borrowing-requests');
+        
+    }
+    public function receive()
+    {
+
+        return view('AdminDashboard.borrows.receive-borrowing-requests');
+        
+    }
+    
     
 }

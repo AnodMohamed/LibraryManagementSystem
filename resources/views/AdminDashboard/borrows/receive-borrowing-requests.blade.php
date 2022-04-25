@@ -7,7 +7,7 @@
     </x-slot>
     <x-slot name="nav">
         <div class="space-x-4">
-             {{-- pending --}}
+            {{-- pending --}}
             <x-jet-nav-link href="{{ route('borrows.pending') }}" :active="request()->routeIs('borrows.pending')">
             {{ __('Pending') }}
             </x-jet-nav-link>
@@ -27,18 +27,7 @@
                 {{ __('Receive') }}
             </x-jet-nav-link>
 
-            {{-- Index 
-            <x-jet-nav-link href="{{ route('borrows.pending') }}" :active="request()->routeIs('borrows.pending')">
-                {{ __('Acceptable borrowing requests') }}
-            </x-jet-nav-link>
-            --}}
-            {{-- Create 
-        
-            <x-jet-nav-link href="{{ route('borrows.create') }}" :active="request()->routeIs('borrows.create')">
-                {{ __('Create') }}
-            </x-jet-nav-link>
-
-            --}}
+     
         </div>
     </x-slot>
 
@@ -51,8 +40,8 @@
             <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
 
                 {{-- Livewire --}}
-                <livewire:borrows.pending-borrowing-requests>
-
+                <livewire:borrows.receive-borrowing-requests>
+                
 
             </div>
         </div>

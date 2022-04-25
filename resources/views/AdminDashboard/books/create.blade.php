@@ -26,7 +26,7 @@
 
                 <div class="p-6">
 
-                    <x-form action="{{ route('books.store') }}"  has-files>
+                    <x-form action="{{ route('books.store') }}"  has-files >
                         <div class="space-y-6">
 
                             {{-- Cover Image --}}

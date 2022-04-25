@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminBookController;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\AudiobookController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\BlogController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\paymentController;
 use App\Http\Controllers\StudentBookController;
 use App\Http\Controllers\StudentDashboardController;
 use App\Http\Controllers\StudentsController;
@@ -68,7 +70,7 @@ Route::group(['middleware' => ['authadmin'], 'prefix' => 'AdminDashboard'], func
     // Books
     Route::group(['prefix' => 'books', 'as' => 'books.'], function () {
         Route::get('/display', [AdminBookController::class, 'index'])->name('display');
-        Route::get('create', [AdminBookController::class, 'create'])->name('create');
+        Route::get('/create', [AdminBookController::class, 'create'])->name('create');
         Route::post('/', [AdminBookController::class, 'store'])->name('store');
         Route::get('{book:slug}/edit', [AdminBookController::class, 'edit'])->name('edit');
         Route::put('{book:slug}', [AdminBookController::class, 'update'])->name('update');
@@ -80,14 +82,14 @@ Route::group(['middleware' => ['authadmin'], 'prefix' => 'AdminDashboard'], func
      Route::group(['prefix' => 'borrows', 'as' => 'borrows.'], function () {
         Route::get('/pending', [BorrowsController::class, 'pending'])->name('pending');
         Route::get('/acceptable', [BorrowsController::class, 'acceptable'])->name('acceptable');
+        Route::get('/driven', [BorrowsController::class, 'driven'])->name('driven');
+        Route::get('/receive', [BorrowsController::class, 'receive'])->name('receive');
 
-        /*
-        Route::get('create', [AdminBookController::class, 'create'])->name('create');
-        Route::post('/', [AdminBookController::class, 'store'])->name('store');
-        Route::get('{book:slug}/edit', [AdminBookController::class, 'edit'])->name('edit');
-        Route::put('{book:slug}', [AdminBookController::class, 'update'])->name('update');
-        Route::delete('{book:slug}/delete', [AdminBookController::class, 'destroy'])->name('delete');
-        */
+    });
+
+    //audiobooks
+    Route::group(['prefix' => 'audiobooks', 'as' => 'audiobooks.'], function () {
+        Route::get('/admin-index', [AudiobookController::class, 'adminIndex'])->name('adminIndex');
     });
 });
 
@@ -119,16 +121,26 @@ Route::group(['middleware' => ['authStudent'], 'prefix' => 'StudentDashboard'], 
 
     });
     
-     // Borrows
-     Route::group(['prefix' => 'borrows', 'as' => 'borrows.'], function () {
+    // Borrows
+    Route::group(['prefix' => 'borrows', 'as' => 'borrows.'], function () {
         Route::get('/studentIndex', [BorrowsController::class, 'studentIndex'])->name('studentIndex');
 
-        /*
-        Route::get('create', [AdminBookController::class, 'create'])->name('create');
-        Route::post('/', [AdminBookController::class, 'store'])->name('store');
-        Route::get('{book:slug}/edit', [AdminBookController::class, 'edit'])->name('edit');
-        Route::put('{book:slug}', [AdminBookController::class, 'update'])->name('update');
-        Route::delete('{book:slug}/delete', [AdminBookController::class, 'destroy'])->name('delete');
-        */
+    });
+
+    //Payments
+    Route::group(['prefix' => 'payments', 'as' => 'payments.'], function () {
+        Route::get('/fine', [paymentController::class, 'fine'])->name('fine');
+        Route::get('/paid', [paymentController::class, 'paid'])->name('paid');
+        Route::get('/{unpaid:id}/payment', [paymentController::class, 'payment'])->name('payment');
+        Route::post('/stripePost', [paymentController::class, 'stripePost'])->name('stripePost');
+    });
+
+    //audiobooks
+
+    Route::group(['prefix' => 'audiobooks', 'as' => 'audiobooks.'], function () {
+        Route::get('/index', [AudiobookController::class, 'index'])->name('index');
+        Route::get('/create', [AudiobookController::class, 'create'])->name('create');
+        Route::post('/', [AudiobookController::class, 'store'])->name('store');
+
     });
 });

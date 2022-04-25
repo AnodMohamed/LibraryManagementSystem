@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\borrow;
 use DateTime;
 use App\Models\Post;
+use App\Models\Reversion;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Verified;
 
@@ -27,6 +28,7 @@ class HomeController extends Controller
     public function AppointmentPage($borrow)
     {
        $borrowdetails = borrow::find($borrow);
+
         return view('home.AppointmentPage',['borrowdetails'=>$borrowdetails]);
 
     }

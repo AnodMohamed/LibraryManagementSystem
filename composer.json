@@ -17,7 +17,9 @@
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.0",
         "simplesoftwareio/simple-qrcode": "~4",
-        "spatie/laravel-newsletter": "^4.9"
+        "spatie/laravel-newsletter": "^4.9",
+        "stripe/stripe-php": "^7.125",
+        "cartalyst/stripe-laravel": "^13.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -62,5 +64,6 @@
         "sort-packages": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "flare/math": "*"
 }

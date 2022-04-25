@@ -11,10 +11,22 @@
             <x-jet-nav-link href="{{ route('borrows.pending') }}" :active="request()->routeIs('borrows.pending')">
                 {{ __('Pending') }}
             </x-jet-nav-link>
-            
+                
+            {{-- Acceptable --}}
             <x-jet-nav-link href="{{ route('borrows.acceptable') }}" :active="request()->routeIs('borrows.acceptable')">
                 {{ __('Acceptable') }}
             </x-jet-nav-link>
+    
+            {{-- Driven --}}
+            <x-jet-nav-link href="{{ route('borrows.driven') }}" :active="request()->routeIs('borrows.driven')">
+                {{ __('Driven') }}
+            </x-jet-nav-link>
+    
+            {{-- Receive --}}
+            <x-jet-nav-link href="{{ route('borrows.receive') }}" :active="request()->routeIs('borrows.receive')">
+                {{ __('Receive') }}
+            </x-jet-nav-link>
+
             
            
             {{-- Create 

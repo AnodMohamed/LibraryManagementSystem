@@ -6,6 +6,10 @@
             <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
                 Borrow Details
             </h1>
+            @php
+                $receiveedtable = DB::table('reversions')->where('borrow_id',$borrowdetails->id )->first();
+            @endphp
+
             <div class="w-full mb-4">
                 <div class="w-64 h-1 py-0 mx-auto my-0 rounded-t opacity-25 gradient"></div>
             </div>
@@ -35,8 +39,21 @@
                      <p class="mb-8 text-gray-600">
                       {{ $borrowdetails->status}}                       
                      </p> 
+
+                     <h5 class="mb-3 text-3xl font-bold leading-none text-gray-800">
+                        Received date
+                     </h5>
+                     <p class="mb-8 text-gray-600">
+                        @if ( $receiveedtable->received_date != Null)
+                            {{ $receiveedtable->received_date}}                       
+                        @else
+                            Empty
+                        @endif
+                     </p> 
+                     
                 </div>
                 <div class="w-5/6 p-6 sm:w-1/2">
+                   
                     <h5 class="mb-3 text-3xl font-bold leading-none text-gray-800">
                        Student copy number
                     </h5>
@@ -48,7 +65,7 @@
                         @endif
                      </p> 
                     <h5 class="mb-3 text-3xl font-bold leading-none text-gray-800">
-                        Book release date
+                        Borrow release date
                     </h5>
                      <p class="mb-8 text-gray-600">
                         @if ( $borrowdetails->releaseDate != Null)
@@ -67,6 +84,18 @@
                             Empty
                         @endif
                      </p> 
+                     <h5 class="mb-3 text-3xl font-bold leading-none text-gray-800">
+                        Fine
+                     </h5>
+                     <p class="mb-8 text-gray-600">
+                        @if ( $receiveedtable->fine != Null)
+                            {{ $receiveedtable->fine}}                       
+                        @else
+                            Empty
+                        @endif
+                     </p> 
+                    
+
                      <h5 class="mb-3 text-3xl font-bold leading-none text-gray-800">
                         QrCode 
                      </h5>

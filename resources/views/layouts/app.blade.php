@@ -15,7 +15,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
+  
     {{-- Livewire  --}}
     @livewireStyles
 
@@ -25,11 +25,16 @@
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
 
+
 </head>
+@method('styles')
 <body class="font-sans antialiased">
     <x-jet-banner />
 
     <div class="min-h-screen bg-gray-100">
+         
+
+   
         @livewire('navigation-menu')
 
         <!-- Page Heading -->
@@ -54,12 +59,17 @@
     </div>
 
     @stack('modals')
-
+  
     {{-- Livewire --}}
     @livewireScripts
 
     {{-- Blade UI kit --}}
     @bukScripts(true)
 
+
+
+@stack('scripts') 
+
 </body>
+
 </html>

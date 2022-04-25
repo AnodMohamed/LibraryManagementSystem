@@ -59,6 +59,11 @@
                                 </x-jet-nav-link>
                             </div>
                            
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="{{ route('audiobooks.adminIndex') }}" :active="request()->routeIs('audiobooks.adminIndex')">
+                                    {{ __('Audio books') }}
+                                </x-jet-nav-link>
+                            </div>
                         @elseif (Auth::user()->utype == 'STD')
                             {{-- Dashboard --}}
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -85,6 +90,16 @@
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <x-jet-nav-link href="{{ route('borrows.studentIndex') }}" :active="request()->routeIs('borrows.studentIndex')">
                                     {{ __('Borrows') }}
+                                </x-jet-nav-link>
+                            </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="{{ route('payments.fine') }}" :active="request()->routeIs('payments.fine')">
+                                    {{ __('Fines') }}
+                                </x-jet-nav-link>
+                            </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="{{ route('audiobooks.index') }}" :active="request()->routeIs('audiobooks.index')">
+                                    {{ __('Audio books') }}
                                 </x-jet-nav-link>
                             </div>
                         @endif

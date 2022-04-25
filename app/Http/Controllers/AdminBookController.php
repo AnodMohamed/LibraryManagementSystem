@@ -43,7 +43,7 @@ class AdminBookController extends Controller
         $book->auther                     = $request->auther;
         $book->category_id                = $request->category_id;
         $book->bcopies                    = $request->bcopies;
-        $book->bcopiesInًarehouse          = $request->bcopies;
+        $book->bcopiesInwarehouse         = $request->bcopies;
         $book->published_at               = $request->published_at;
 
         if ($request->hasFile('cover_image')) {

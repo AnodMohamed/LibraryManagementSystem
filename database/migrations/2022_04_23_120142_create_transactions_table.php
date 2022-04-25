@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReversionsTable extends Migration
+class CreateTransactionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateReversionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('reversions', function (Blueprint $table) {
+        Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('borrow_id')->unsigned();
-            $table->String('received_date')->nullable();
-            $table->string('fine')->default('0');
+            $table->bigInteger('reversion_id')->unsigned();
+            $table->integer('amount');
+            $table->String('currency');
+            $table->String('status');
             $table->timestamps();
-            $table->foreign('borrow_id')->references('id')->on('borrows')->onDelete('cascade');
+            $table->foreign('reversion_id')->references('id')->on('reversions');
+
         });
     }
 
@@ -30,6 +32,6 @@ class CreateReversionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reversions');
+        Schema::dropIfExists('transactions');
     }
 }
