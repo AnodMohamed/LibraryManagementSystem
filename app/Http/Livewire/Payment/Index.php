@@ -17,6 +17,7 @@ class Index extends Component
     {
         //select * from reversions where id not in (select reversion_id from transactions)
         $unpaids = Reversion::searchFine($this->search)
+        ->where('fine','!=' , 0)
         ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
         ->paginate($this->perPage);
         return view('livewire.payment.index',['unpaids'=>$unpaids]);

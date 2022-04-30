@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Transaction extends Model
+class Comments extends Model
 {
     use HasFactory;
-    protected $fillable = ['reversion_id', 'amount', 'currency', 'status', 'transaction_id'];
+
+
 }

@@ -57,7 +57,7 @@
                     </th>
 
                     <th class="px-2 py-3 text-xs tracking-wider text-left uppercase">
-                        Transaction ID
+                        Actions
                     </th>
                 </tr>
             </thead>
@@ -70,7 +70,7 @@
                         $transaction =  DB::table('transactions')->where('reversion_id',$paid->id)->first();
                     @endphp
                   
-                    @if ($transaction != '')
+                    @if ($transaction == '')
                     <tr>
 
                         <td class="px-2 py-4 whitespace-nowrap">
@@ -85,7 +85,14 @@
 
                         <td class="px-2 py-4 text-sm text-gray-500 whitespace-nowrap">
                             <div class="flex justify-start space-x-1">
-                               {{ $transaction ->transaction_id }} 
+                                {{--------
+                                <a href="{{ route('AppointmentPage', $borrow) }}" class="p-1 border-2 border-indigo-00 rounded-md bg-blue-300">
+                                    <svg class="w-6 h-6 " xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" stroke-width="2"  viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                    </svg>
+                                </a>
+-------}}
                             </div>
                         </td>
 

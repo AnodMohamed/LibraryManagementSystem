@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CommentStoreRequest;
 use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Category;
@@ -12,6 +13,8 @@ use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Models\Comments;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
 
 class PostController extends Controller
 {
@@ -80,6 +83,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        return view('pages.blog.show', compact('post'));
     }
 
     /**
@@ -129,5 +133,17 @@ class PostController extends Controller
         $post->tags()->sync($request->tags);
 
         return redirect()->route('posts.index')->with('success', 'Post successfully updated!');
+    }
+
+    public function storeComment(CommentStoreRequest $request ,Post $post)
+    {
+        
+        $comment                   = new Comments;
+        $comment->user_id          = Auth::user()->id;
+        $comment->post_id          = $post->id;
+        $comment->comment          = $request->comment;
+        $comment->save();
+
+        return back();
     }
 }

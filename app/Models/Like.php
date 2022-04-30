@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Transaction extends Model
+class Like extends Model
 {
     use HasFactory;
-    protected $fillable = ['reversion_id', 'amount', 'currency', 'status', 'transaction_id'];
 }

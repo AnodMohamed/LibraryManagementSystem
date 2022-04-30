@@ -19,6 +19,7 @@ class CreateTransactionsTable extends Migration
             $table->integer('amount');
             $table->String('currency');
             $table->String('status');
+            $table->string('transaction_id');
             $table->timestamps();
             $table->foreign('reversion_id')->references('id')->on('reversions');
 

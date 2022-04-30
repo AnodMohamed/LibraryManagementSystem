@@ -23,7 +23,7 @@ class ShowPost extends Component
     {
         $categories = Category::all();
 
-        $posts = Post::published();
+        $posts = Post::where('featured', '0');
 
         if ($this->category) {
             $posts->category($this->category);

@@ -169,11 +169,11 @@
         </div>
     </section>
 
-    {{-- Featured Posts --}}
+    {{-- Featured Posts 
     <section class="py-8 bg-white border-b">
         <div class="container flex flex-wrap pt-4 pb-12 mx-auto">
             <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
-                Featured Post
+                Last Posts
             </h1>
 
             <div class="w-full mb-4">
@@ -181,13 +181,35 @@
             </div>
 
             <div class="grid grid-cols-3">
-                @foreach ($posts as $post)
-                <x-post :post="$post" />
+                @foreach ($lastposts as $post)
+                <div class="flex flex-col flex-grow flex-shrink w-full col-span-1 p-6">
+                    <div class="flex-1 overflow-hidden bg-white rounded-t rounded-b-none shadow-md">
+                        <a href="#" class="flex flex-wrap no-underline hover:no-underline">
+                            <img src="{{ asset('post') }}/{{$post->cover_image}}" alt="" class="w-full">
+
+                            <div class="w-full p-4">
+                                <h2 class="text-xl font-bold text-gray-800">{{ $post->title }}</h2>
+                                <p class="mb-5 text-base text-gray-800">
+                                    {!! Str::limit(($post->body), 200, '...') !!}
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="flex-none p-3 mt-auto overflow-hidden bg-white rounded-t-none rounded-b shadow-md">
+                        <div class="flex items-center justify-start">
+                            <a href="{{ route('post.show', $post) }}" class="px-3 py-2 mx-auto my-6 font-bold text-white transition duration-300 ease-in-out transform rounded-full shadow-lg lg:mx-0 hover:underline gradient focus:outline-none focus:shadow-outline hover:scale-105">
+                                Read More
+                            </a>
+                        </div>
+                    </div>
+                </div>
                 @endforeach
             </div>
 
         </div>
     </section>
+--}}
+     
     <!-- Change the colour #f8fafc to match the previous section colour -->
     <svg class="wave-top" viewBox="0 0 1439 147" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">

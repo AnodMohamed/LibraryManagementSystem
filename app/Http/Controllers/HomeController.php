@@ -8,21 +8,21 @@ use App\Models\Post;
 use App\Models\Reversion;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Verified;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
 
+use DatePeriod;
 class HomeController extends Controller
 {
     public function index()
     {
-        $today = new \DateTime();
-
-        return view('home.index', [
-            'posts'  => Post::where('featured', true)
-                ->whereNotNull('published_at')
-                ->where('published_at', '<=', $today)
-                ->latest()
-                ->take(3)
-                ->get(),
-        ]);
+        /*
+        $lastposts = Post::where('featured', '1')
+                        ->latest()
+                        ->take(3)
+                        ->get();
+        */
+        return view('home.index');
     }
 
     public function AppointmentPage($borrow)

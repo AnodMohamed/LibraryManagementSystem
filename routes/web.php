@@ -1,20 +1,20 @@
 <?php
 
-use App\Http\Controllers\AdminBookController;
-use App\Http\Controllers\AdminDashboardController;
-use App\Http\Controllers\AudiobookController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\BlogController;
-use App\Http\Controllers\BorrowsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\BorrowsController;
 use App\Http\Controllers\paymentController;
-use App\Http\Controllers\StudentBookController;
-use App\Http\Controllers\StudentDashboardController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\StudentsController;
+use App\Http\Controllers\AdminBookController;
+use App\Http\Controllers\AudiobookController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\StudentBookController;
+use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\StudentDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +31,7 @@ use App\Http\Controllers\StudentsController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/AppointmentPage{borrow:id}', [HomeController::class, 'AppointmentPage'])->name('AppointmentPage');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
+Route::get('{post:slug}', [PostController::class, 'show'])->name('post.show');
 
 
 Route::group(['middleware' => ['authadmin'], 'prefix' => 'AdminDashboard'], function () {
@@ -66,7 +67,7 @@ Route::group(['middleware' => ['authadmin'], 'prefix' => 'AdminDashboard'], func
         Route::post('/', [StudentsController::class, 'store'])->name('store');
 
     });
-    
+
     // Books
     Route::group(['prefix' => 'books', 'as' => 'books.'], function () {
         Route::get('/display', [AdminBookController::class, 'index'])->name('display');
@@ -98,12 +99,10 @@ Route::group(['middleware' => ['authStudent'], 'prefix' => 'StudentDashboard'], 
     // Dashboard
     Route::group(['prefix' => '', 'as' => 'StudentDashboard.'], function () {
         Route::get('/', [StudentDashboardController::class, 'index'])->name('index');
-        
+
     });
 
-    
 
-    
     // Posts
     Route::group(['prefix' => 'posts', 'as' => 'posts.'], function () {
         Route::get('/', [PostController::class, 'index'])->name('index');
@@ -114,13 +113,13 @@ Route::group(['middleware' => ['authStudent'], 'prefix' => 'StudentDashboard'], 
         Route::get('{post:slug}', [PostController::class, 'show'])->name('show');
     });
 
-    
+
     // Books
     Route::group(['prefix' => 'books', 'as' => 'books.'], function () {
         Route::get('/', [StudentBookController::class, 'index'])->name('index');
 
     });
-    
+
     // Borrows
     Route::group(['prefix' => 'borrows', 'as' => 'borrows.'], function () {
         Route::get('/studentIndex', [BorrowsController::class, 'studentIndex'])->name('studentIndex');
@@ -133,6 +132,7 @@ Route::group(['middleware' => ['authStudent'], 'prefix' => 'StudentDashboard'], 
         Route::get('/paid', [paymentController::class, 'paid'])->name('paid');
         Route::get('/{unpaid:id}/payment', [paymentController::class, 'payment'])->name('payment');
         Route::post('/stripePost', [paymentController::class, 'stripePost'])->name('stripePost');
+
     });
 
     //audiobooks
@@ -143,4 +143,10 @@ Route::group(['middleware' => ['authStudent'], 'prefix' => 'StudentDashboard'], 
         Route::post('/', [AudiobookController::class, 'store'])->name('store');
 
     });
+
+    //comment
+     Route::post('{post:id}/comment', [PostController::class, 'storeComment'])->name('post.comment');
+
+
 });
+
